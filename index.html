@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Harmontown Episodes</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const episodes = [
@@ -228,51 +233,62 @@
                 { number: 361, title: "Nanjianimax", link: "https://www.harmontown.com/2021/03/video-episode-361-nanjianimax/", date: "2021-03", video: "" }
              ];
 
-        const container = document.getElementById("episodes-container");
+const container = document.getElementById("episodes-container");
 
-        const groupedEpisodes = episodes.reduce((groups, episode) => {
-            const [year, month] = episode.date.split("-");
-            const groupKey = `${year}-${month}`;
-            if (!groups[groupKey]) {
-                groups[groupKey] = [];
+            const groupedEpisodes = episodes.reduce((groups, episode) => {
+                const [year, month] = episode.date.split("-");
+                const groupKey = `${year}-${month}`;
+                if (!groups[groupKey]) {
+                    groups[groupKey] = [];
+                }
+                groups[groupKey].push(episode);
+                return groups;
+            }, {});
+
+            for (const group in groupedEpisodes) {
+                const groupContainer = document.createElement("div");
+                groupContainer.classList.add("group");
+
+                const groupTitle = document.createElement("h2");
+                const [year, month] = group.split("-");
+                const date = new Date(year, month - 1);
+                const monthYear = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+                groupTitle.innerText = monthYear;
+                groupTitle.style.cursor = "pointer"; // Make it look clickable
+
+                const groupContent = document.createElement("div");
+                groupContent.classList.add("group-content");
+
+                groupedEpisodes[group].forEach(episode => {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+
+                    const header = document.createElement("h3");
+                    header.innerHTML = `<a href="${episode.link}" target="_blank">Episode ${episode.number}: ${episode.title}</a>`;
+
+                    const video = document.createElement("video");
+                    video.controls = true;
+                    video.src = episode.video;
+                    video.classList.add("video-player");
+
+                    card.appendChild(header);
+                    card.appendChild(video);
+                    groupContent.appendChild(card);
+                });
+
+                // Initially hide the content
+                groupContent.classList.add("hidden");
+
+                groupTitle.addEventListener("click", function() {
+                    groupContent.classList.toggle("hidden");
+                });
+
+                groupContainer.appendChild(groupTitle);
+                groupContainer.appendChild(groupContent);
+                container.appendChild(groupContainer);
             }
-            groups[groupKey].push(episode);
-            return groups;
-    }, {});
-
-        for (const group in groupedEpisodes) {
-            const groupContainer = document.createElement("div");
-            groupContainer.classList.add("group");
-
-            const groupTitle = document.createElement("h2");
-            const [year, month] = group.split("-");
-            const date = new Date(year, month - 1);
-            const monthYear = date.toLocaleString('default', { month: 'long', year: 'numeric' });
-            groupTitle.innerText = monthYear;
-
-            groupContainer.appendChild(groupTitle);
-
-            groupedEpisodes[group].forEach(episode => {
-                const card = document.createElement("div");
-                card.classList.add("card");
-
-                const header = document.createElement("h3");
-                header.innerHTML = `<a href="${episode.link}" target="_blank">Episode ${episode.number}: ${episode.title}</a>`;
-
-                const video = document.createElement("video");
-                video.controls = true;
-                video.src = episode.video;
-                video.classList.add("video-player");
-
-                card.appendChild(header);
-                card.appendChild(video);
-                groupContainer.appendChild(card);
-            });
-
-            container.appendChild(groupContainer);
-        }
-    });
-</script>
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -281,7 +297,5 @@
     <main class="container">
         <div id="episodes-container" class="episodes-container"></div>
     </main>
-   
-   
 </body>
 </html>
