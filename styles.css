@@ -34,6 +34,17 @@ footer {
     margin-bottom: 40px;
 }
 
+.group-content {
+    display: none; /* Initially hide the content */
+}
+
+.group-content.show {
+    display: block; /* Show content when the show class is added */
+}
+
+.group-title {
+    cursor: pointer;
+}
 .group h2 {
     background-color: #333;
     color: #fff;
