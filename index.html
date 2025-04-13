@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roaring Kitty Livestream Thumbnail Explained</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+    }
+
     body {
       background-color: #0e0e0e;
       color: #ffffff;
-      font-family: Arial, sans-serif;
+      font-family: var(--default-font);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -27,19 +32,36 @@
       border-radius: 8px;
     }
     .tooltip {
-      position: absolute;
-      background-color: rgba(0, 0, 0, 0.9);
-      color: #fff;
-      padding: 10px;
-      border-radius: 5px;
+      position: fixed;
+      background-color: #1e1e1e;
+      color: #ffffff;
+      padding: 20px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
       font-size: 14px;
-      max-width: 250px;
+      max-width: 320px;
       display: none;
-      z-index: 10;
+      z-index: 1000;
+      pointer-events: auto;
+      font-family: var(--default-font);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+    .tooltip img {
+      width: 100%;
+      border-radius: 5px;
+      margin: 12px 0;
+    }
+    .tooltip strong {
+      font-size: 24px;
+      display: block;
+      margin-bottom: 10px;
     }
     .hotspot {
       position: absolute;
-      cursor: help;
+      cursor: pointer;
+      border: 5px dashed rgba(50, 138, 16, 0.5);
+      border-radius: 4px;
+      box-sizing: border-box;
     }
   </style>
 </head>
@@ -47,40 +69,87 @@
   <div class="container">
     <img src="image.png" alt="Roaring Kitty Thumbnail" class="main-image" />
 
-    <!-- Domino Gloved Hand Tooltip -->
-    <div class="hotspot" style="bottom: 20px; right: 40px; width: 80px; height: 100px;"
-         onmouseenter="showTooltip(event, 'domino')" 
-         onmouseleave="hideTooltip()">
-    </div>
+    <!-- Domino Gloved Hand Hotspot and Tooltip -->
+    <div class="hotspot" style="bottom: 25px; right: 25px; width: 180px; height: 90px;" onclick="toggleTooltip(event, 'tooltip-domino')"></div>
     <div id="tooltip-domino" class="tooltip">
-      <strong>Gloved hand flicking over domino from V for Vendetta</strong><br><br>
+      <strong>Gloved hand flicking over domino from V for Vendetta</strong>
+      <img src="glovedhand.png" alt="Domino Scene from V for Vendetta">
       The domino flick depicts a key scene where V sets off a chain reaction by flicking the first of many dominoes. This moment is symbolic of the broader plan V has put into motion to incite rebellion and bring down the oppressive government. The domino effect represents how a single action can lead to a series of events that ultimately achieve a larger goal. The visual metaphor highlights the impact of V's meticulously planned actions and their far-reaching consequences.
+    </div>
+
+    <!-- Brian Windhorst Hotspot and Tooltip -->
+    <div class="hotspot" style="bottom: 30px; left: 40px; width: 120px; height: 140px;" onclick="toggleTooltip(event, 'tooltip-windhorst')"></div>
+    <div id="tooltip-windhorst" class="tooltip">
+      <strong>Brian Windhorst</strong>
+      <iframe width="280" height="158"
+        src="https://www.youtube.com/embed/-Ps4HarpIJk"
+        title="Brian Windhorst - Jazz trade rant"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        style="margin: 12px 0; border-radius: 6px;">
+      </iframe>
+      <br>
+      An obscure yet genius reference to an NBA trade that left everyone scratching their heads. Windhorst's speculative rant turned out to be right. Utah was positioning themselves to <b>blow up</b> their roster and rebuild, but no one else around the league knew it at the time.
     </div>
   </div>
 
   <script>
-    const tooltips = {
-      domino: document.getElementById('tooltip-domino')
-    };
+    let activeTooltip = null;
 
-    function showTooltip(e, key) {
-      const tooltip = tooltips[key];
-      tooltip.style.display = 'block';
-      tooltip.style.left = e.pageX + 15 + 'px';
-      tooltip.style.top = e.pageY + 15 + 'px';
-    }
+    function toggleTooltip(e, id) {
+      e.stopPropagation();
+      const tooltip = document.getElementById(id);
 
-    function hideTooltip() {
-      Object.values(tooltips).forEach(t => t.style.display = 'none');
-    }
-
-    document.addEventListener('mousemove', function(e) {
-      Object.values(tooltips).forEach(t => {
-        if (t.style.display === 'block') {
-          t.style.left = e.pageX + 15 + 'px';
-          t.style.top = e.pageY + 15 + 'px';
+      if (activeTooltip && activeTooltip !== tooltip) {
+        const iframe = activeTooltip.querySelector('iframe');
+        if (iframe) {
+          iframe.src = iframe.src;
         }
-      });
+        activeTooltip.style.display = 'none';
+      }
+
+      if (tooltip.style.display === 'block') {
+        tooltip.style.display = 'none';
+        activeTooltip = null;
+      } else {
+        const padding = 15;
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.display = 'block';
+
+        const tooltipWidth = tooltip.offsetWidth;
+        const tooltipHeight = tooltip.offsetHeight;
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        let left = e.clientX + padding;
+        let top = e.clientY + padding;
+
+        if (left + tooltipWidth > viewportWidth) {
+          left = Math.max(padding, viewportWidth - tooltipWidth - padding);
+        }
+        if (top + tooltipHeight > viewportHeight) {
+          top = Math.max(padding, viewportHeight - tooltipHeight - padding);
+        }
+
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+        tooltip.style.visibility = 'visible';
+        activeTooltip = tooltip;
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      if (activeTooltip && !activeTooltip.contains(e.target)) {
+        const iframe = activeTooltip.querySelector('iframe');
+        if (iframe) {
+          iframe.src = iframe.src;
+        }
+        activeTooltip.style.display = 'none';
+        activeTooltip = null;
+      }
     });
   </script>
 </body>
