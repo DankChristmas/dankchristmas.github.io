@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" as="style">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roaring Kitty Livestream Thumbnail Explained</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --default-font: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft YaHei Light", sans-serif;
+      --default-font: 'Inter';
     }
 
     body {
@@ -19,7 +20,8 @@
       align-items: center;
       justify-content: center;
       padding: 40px;
-    }
+    }  
+
     .container {
       position: relative;
       max-width: 1200px;
@@ -40,6 +42,8 @@
       border-radius: 10px;
       font-size: 14px;
       max-width: 320px;
+      max-height: 800px;
+      overflow-y: auto;
       display: none;
       z-index: 1000;
       pointer-events: auto;
@@ -59,7 +63,7 @@
     .hotspot {
       position: absolute;
       cursor: pointer;
-      border: 5px dashed rgba(50, 138, 16, 0.5);
+      border: 5px dashed rgba(50, 138, 16, 0.95);
       border-radius: 4px;
       box-sizing: border-box;
     }
@@ -78,7 +82,7 @@
     </div>
 
     <!-- Brian Windhorst Hotspot and Tooltip -->
-    <div class="hotspot" style="bottom: 30px; left: 40px; width: 120px; height: 140px;" onclick="toggleTooltip(event, 'tooltip-windhorst')"></div>
+    <div class="hotspot" style="bottom: 25px; left: 20px; width: 120px; height: 185px;" onclick="toggleTooltip(event, 'tooltip-windhorst')"></div>
     <div id="tooltip-windhorst" class="tooltip">
       <strong>Brian Windhorst</strong>
       <iframe width="280" height="158"
@@ -92,7 +96,140 @@
       <br>
       An obscure yet genius reference to an NBA trade that left everyone scratching their heads. Windhorst's speculative rant turned out to be right. Utah was positioning themselves to <b>blow up</b> their roster and rebuild, but no one else around the league knew it at the time.
     </div>
-  </div>
+
+    <!-- Ryan Cohen as Doctor Manhattan Hotspot and Tooltip -->
+    <div class="hotspot" style="top: 160px; right: 55px; width: 95px; height: 95px;" onclick="toggleTooltip(event, 'tooltip-manhattan')"></div>
+    <div id="tooltip-manhattan" class="tooltip">
+    <strong>Ryan Cohen as Doctor Manhattan from Watchmen</strong>
+    <img src="drmanhattan.png" alt="Doctor Manhattan from Watchmen">
+    Following a laboratory accident, atomic physicist Jon Osterman develops the ability to observe and manipulate matter at the subatomic level. He is later given the tongue-in-cheek moniker <b>Doctor Manhattan</b> by the United States government, <i>due to his limitless destructive potential</i>.
+    <br><br>
+    RC became Dr. Manhattan by turning around the company and we already know who's about to get destroyed. Shorts' only out is the company's bankruptcy. RC took that completely off the table.
+    </div>
+
+    <!-- Mister Babadook Hotspot and Tooltip -->
+    <div class="hotspot" style="top: 15px; right: 55px; width: 610px; height: 140px;" onclick="toggleTooltip(event, 'tooltip-babadook')"></div>
+    <div id="tooltip-babadook" class="tooltip">
+      
+    <strong>Quote from 'Mister Babadook'</strong>
+    <iframe width="280" height="158"
+    src="https://www.youtube.com/embed/k5WQZzDRVtw"
+    title="The Babadook Trailer"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="margin: 12px 0; border-radius: 6px;">
+    </iframe>
+      
+    <blockquote>
+    <em>I'll WAGER with YOU, I'LL MAKE you a BET.<br>
+    ThE MORE you DENY me the STRONGER I GET.<br>
+    You'll then be my PUPPET, my plaything, my PET.<br>
+    I'll MAKE you DO THINGS You'LL be SURE to REGRET.</em>
+    </blockquote>
+    <p><a href="https://en.wikipedia.org/wiki/The_Babadook" target="_blank" style="color: #66ccff;">The Babadook</a> is a 2014 Australian supernatural psychological horror film. The Babadook itself is a symbolic representation of the inner demons and unresolved emotions that haunt Amelia (protagonist). The pop-up book is a physical manifestation of these suppressed feelings.</p>
+    </div>
+
+    <!-- Ozymandias from Watchmen Hotspot -->
+    <div class="hotspot"
+     style="top: 160px; left: 625px; width: 85px; height: 110px;"
+     onclick="toggleTooltip(event, 'tooltip-ozymandias')"></div>
+    <div id="tooltip-ozymandias" class="tooltip">
+      
+    <strong>Ozymandias from Watchmen</strong>
+    <img src="ozymandias.png" alt="Ozymandias Watchmen Comic Panel">
+    
+<p>This comic panel is from the eleventh issue of <em>Watchmen</em> titled <b>“Look on My Works, Ye Mighty…”</b> by Alan Moore (who also wrote <em>V for Vendetta</em>) and Dave Gibbons.</p>
+
+<p>This scene depicts one of the most iconic moments in the series, featuring a conversation between Ozymandias  and Nite Owl (Dan Dreiberg) alongside Rorschach.</p>
+    
+In the scene depicted in this image, Nite Owl tells Ozymandias to execute his plan. Ozymandias responds with the line in the panel, highlighting his strategic foresight by revealing that he had already initiated the plan thirty-five minutes ago. This revelation underscores the futility of their attempt to stop him and the inevitability of his actions.
+
+<p>This moment illustrates Ozymandias' cold, calculated nature and his belief that the end justifies the means, as well as his detachment from the moral and ethical implications of his actions.</p>
+    <p>The “Ozymandias” episode of <a href="https://youtu.be/28kofqHQg6k?si=JhXRX-GUFHtYigMX" target="_blank" style="color: #66ccff;">Breaking Bad</a> (Season 5, Episode 14) reflects on the inevitable decline of all leaders and empires. This is particularly fitting for the episode, as it marks the downfall of Walter White.</p>
+    </div>
+
+
+    <!-- Hooded Wojak Jedi Girl Hotspot and Tooltip -->
+    <div class="hotspot" style="top: 180px; left: 450px; width: 85px; height: 130px;"
+    onclick="toggleTooltip(event, 'tooltip-wojak')"></div>
+    <div id="tooltip-wojak" class="tooltip">
+    <strong>Hooded Wojak Jedi Girl</strong>
+    <img src="wojak.png" alt="Hooded Wojak Jedi Girl">
+    She's the one <a href="https://knowyourmeme.com/memes/iq-bell-curve-midwit" target="_blank" style="color: #66ccff;">on the right part of the curve in the IQ meme</a>. In crypto, this means being on a high-IQ contrarian investment – spotting gold before the mid- and left-curvers do.
+
+</div>
+
+
+    <!-- Game of Thrones Hotspot and Tooltip -->
+    <div class="hotspot" style="top: 200px; left: 20px; width: 160px; height: 175px;"
+    onclick="toggleTooltip(event, 'tooltip-gameofthrones')"></div>
+    <div id="tooltip-gameofthrones" class="tooltip">
+    <strong>Face of the High Sparrow and Green Flame from Game of Thrones</strong>
+
+<iframe
+  width="280"
+  height="158"
+  src="https://www.youtube.com/embed/NDHI2gadQhc?si=KEMM87md8556LIsM"
+  title="King's Landing Wildfire Explosion - Game of Thrones S06E10"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+  style="margin: 12px 0; border-radius: 6px;">
+</iframe>
+      <br>
+      <br>
+In the GOT’s 60th episode (final episode of Season 6) “The Winds of Winter”, Cersei arranges for a cache of wildfire to be strategically placed and ignited beneath the Great Sept, at just the right time (of her choosing) killing everyone inside. <br><br> This move allowed Cersei to eliminate many of her adversaries all at once, <b>while protecting those she wished not to be harmed</b>.
+<br><br>
+The music is the same song that Roaring Kitty used in <a href="https://x.com/i/status/1790041813379850491" target="_blank" style="color: #66ccff;">one of this first Twitter return videos</a>
+
+
+</div>
+
+
+<!-- Japanese Parliament Brawl Hotspot and Tooltip -->
+    <div class="hotspot" style="bottom: 25px; right: 280px; width: 170px; height: 230px;"
+    onclick="toggleTooltip(event, 'tooltip-parliament')"></div>
+    <div id="tooltip-parliament" class="tooltip">
+    <strong>Japanese Parliament Brawl of 2018 and a kitty "speaking" into a microphone</strong>
+    <img src="parliament.png" alt="Japanese Parliament Brawl">
+    <img src="kitty.png" alt="Kitty Would">
+
+<p>A custom edit mixing <a href="https://knowyourmeme.com/memes/would-reaction-images" target="_blank" style="color: #66ccff;">the two meme formats that are usually captioned as "would"</a>.
+</p>
+It may be a reference to when Roaring Kitty was asked by Congress whether he would still buy at the current price.
+<p>
+<b>"Would you buy their stock now at roughly $45 per share?"</b>
+</p>
+<iframe
+	width="280"
+	height="158"
+	src="https://www.youtube.com/embed/pMm86JoMUOM?si=6AKqI6oOo8_uR_ml&amp;start=56"
+	title="YouTube video player"
+	frameborder="0"
+	allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+	referrerpolicy="strict-origin-when-cross-origin"
+	allowfullscreen
+	style="margin: 12px 0; border-radius: 6px;">
+</iframe>
+
+<p>
+The <a href="https://knowyourmeme.com/editorials/guides/whats-going-on-in-this-picture-from-japanese-parliament-the-much-memed-attempt-to-restrain-shinichi-yokoyama-explained" target="_blank" style="color: #66ccff;">image</a> from Japanese parliament that has become a meme involves Shinichi Yokoyama, the Chairman of the Judicial Affairs Committee in 2018, who found himself at the center of a chaotic scene while trying to push forward a controversial immigration reform bill.
+</p>
+The photograph captures a moment on December 8, 2018, when Yokoyama attempted to initiate a vote on the bill, which aimed to allow foreign workers a path to Japanese citizenship. This proposal, introduced by then-Prime Minister Shinzo Abe, faced fierce opposition from both Japan’s opposition parties and certain members of Abe's own conservative base.
+<p>
+In the image, Yokoyama is holding a microphone, attempting to speak as members of parliament swarm around him in an attempt to restrain him, presumably to prevent the vote from proceeding. This intense moment visually portrays the struggle to control the narrative or halt the legislative process, and it embodies a high-stakes power struggle within a government setting. Notably, physical altercations are not entirely unusual in Japanese parliament; similar scenes occurred in 2015 and 2023.
+</p>
+</div>
+
+
+
+
+
+
+
+    
+</div>
 
   <script>
     let activeTooltip = null;
